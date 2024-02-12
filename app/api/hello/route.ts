@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
   const clientIP = req.ip;
   const { success, limit, remaining, reset } = await ratelimit.limit(clientIP!);
   const reset_datetime = new Date(reset);
-  console.log("CALLED")
+
   if (!success) {
     return NextResponse.json({ error: "Rate limit exceeded", reset_timestamp: reset, reset_datetime }, { status: 429 });
   }
